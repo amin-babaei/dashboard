@@ -1,5 +1,14 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+        "@/containers/*" : ["src/containers/*"],
+        "@/components/*" : ["src/components/*"],   
+        "@/data/*" : ["src/data/*"],   
+        "@/context/*" : ["src/context/*"],   
+        "@/pages/*" : ["src/pages/*"],  
+        "@/utils/*" :["src/utils/*"]
+    },
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],

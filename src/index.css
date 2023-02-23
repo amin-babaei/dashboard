@@ -13,6 +13,13 @@
     url("fonts/Vazir.woff") format("woff"),
     url("fonts/Vazir.ttf") format("truetype");
 }
+@font-face {
+  font-family: "vazir";
+   src: url("fonts/Vazir-FD.eot") format("embedded-opentype"),
+    url("fonts/Vazir-FD.woff2") format("woff2"),
+    url("fonts/Vazir-FD.woff") format("woff"),
+    url("fonts/Vazir-FD.ttf") format("truetype");
+}
 
 body{
   margin: 0;
