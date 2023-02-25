@@ -21,6 +21,9 @@ const DrawerCustom = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== '
           duration: theme.transitions.duration.enteringScreen,
         }),
         boxSizing: 'border-box',
+        [theme.breakpoints.down('sm')]: {
+          width: theme.spacing(8),
+        },
         ...(!open && {
           overflowX: 'hidden',
           transition: theme.transitions.create('width', {
@@ -29,7 +32,7 @@ const DrawerCustom = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== '
           }),
           width: theme.spacing(7),
           [theme.breakpoints.up('sm')]: {
-            width: theme.spacing(9),
+            width: theme.spacing(8),
           },
         }),
       },

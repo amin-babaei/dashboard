@@ -1,7 +1,4 @@
-import { useMediaQuery } from "@mui/material";
-import { createContext, FC, useEffect, useState } from "react";
-import { useTheme } from '@mui/material/styles';
-
+import { createContext, FC, useState } from "react";
 type Props = { children: React.ReactNode };
 interface IDrawer {
     open: boolean;
@@ -15,13 +12,6 @@ export const DrawerProvider : FC<Props> = ({children}) => {
   const toggleDrawer = () => {
     setOpen(!open);
   };
-    const theme = useTheme()
-    const matches = useMediaQuery(theme.breakpoints.down('sm'))
-
-      useEffect(()=>{
-        if(matches)setOpen(false)
-      },[matches])
-
     return (
         <DrawerContext.Provider value={{open,setOpen,toggleDrawer}}>
             {children}
