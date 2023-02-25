@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import Speeddial from "./Speeddial";
 
 interface IProps{
     children: JSX.Element
@@ -15,6 +16,7 @@ const Page = (props:IProps) => {
                     {children}
                 </Box>
             )}
+            <Speeddial/>
         </div>
     );
 };

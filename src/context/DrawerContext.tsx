@@ -1,4 +1,6 @@
-import { createContext, FC, useState } from "react";
+import { useMediaQuery } from "@mui/material";
+import { createContext, FC, useEffect, useState } from "react";
+import { useTheme } from '@mui/material/styles';
 
 type Props = { children: React.ReactNode };
 interface IDrawer {
@@ -9,11 +11,16 @@ interface IDrawer {
 export const DrawerContext = createContext<IDrawer | null>(null)
 
 export const DrawerProvider : FC<Props> = ({children}) => {
-    const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
+  const toggleDrawer = () => {
+    setOpen(!open);
+  };
+    const theme = useTheme()
+    const matches = useMediaQuery(theme.breakpoints.down('sm'))
 
-    const toggleDrawer = () => {
-        setOpen(!open);
-      };
+      useEffect(()=>{
+        if(matches)setOpen(false)
+      },[matches])
 
     return (
         <DrawerContext.Provider value={{open,setOpen,toggleDrawer}}>

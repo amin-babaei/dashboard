@@ -1,10 +1,21 @@
 import { createTheme } from '@mui/material/styles';
 
-const theme = createTheme({
-  direction: 'rtl',
-  typography:{
-    fontFamily:'vazir'
+export const lightTheme = createTheme({
+  direction: "rtl",
+  palette: {
+      mode: "light",
+  },
+  typography: {
+      fontFamily: "vazir",
   },
 });
 
-export default theme;
+export const darkTheme = createTheme({
+  direction: "rtl",
+  palette: {
+      mode: "dark",
+  },
+  typography: {
+      fontFamily: "vazir",
+  },
+});

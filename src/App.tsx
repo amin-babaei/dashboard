@@ -1,15 +1,18 @@
 import { CacheProvider } from "@emotion/react"
 import { Box, CssBaseline, ThemeProvider, Toolbar } from '@mui/material';
 import emotionCache from '@/utils/cachRtl';
-import theme from '@/utils/theme';
+import { darkTheme, lightTheme } from '@/utils/theme';
 import Navbar from '@/components/Navbar';
+import {ThemeContext} from '@/context/ThemeContext'
 import SidebarContainer from '@/containers/SidebarContainer';
 import SidebarContent from '@/components/SidebarContent';
 import PageContainer from '@/containers/PageContainer';
+import { useContext } from "react";
 
 const App = () => {
   const clientSideEmotionCache = emotionCache();
-
+  const mode = useContext(ThemeContext)
+  const theme = mode?.mode === "dark" ? darkTheme : lightTheme;
   return (
     <CacheProvider value={clientSideEmotionCache}>
       <ThemeProvider theme={theme}>

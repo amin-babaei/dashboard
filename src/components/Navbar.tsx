@@ -1,4 +1,4 @@
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import { Avatar, Badge, IconButton, Toolbar, Typography } from "@mui/material"
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
@@ -31,6 +31,7 @@ const AppBar = styled(MuiAppBar, {
 
 const Navbar = () => {
   const drawer = useContext(DrawerContext)
+  const theme = useTheme()
   return (
     <AppBar color='default' position="absolute" open={drawer?.open}>
       <Toolbar
@@ -46,6 +47,9 @@ const Navbar = () => {
           sx={{
             marginRight: '36px',
             ...(drawer?.open && { display: 'none' }),
+            [theme.breakpoints.down('md')]: {
+              display: 'none',
+            },
           }}
         >
           <MenuIcon />
@@ -61,11 +65,11 @@ const Navbar = () => {
           داشبورد ادمین
         </Typography>
         <IconButton color="inherit">
-          <Badge badgeContent={4} color="secondary" anchorOrigin={{
+          <Badge badgeContent={4} color="warning" anchorOrigin={{
             vertical: 'top',
             horizontal: 'left',
           }}>
-            <NotificationsIcon color='info'/>
+            <NotificationsIcon color='action'/>
           </Badge>
         </IconButton>
         <IconButton>
