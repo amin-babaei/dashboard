@@ -1,3 +1,4 @@
+@import url("https://cdn.syncfusion.com/ej2/material.css");
 :root {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -24,4 +25,13 @@
 body{
   margin: 0;
   padding: 0;
+}
+#recharts_measurement_span + div{
+  display: none;
+}
+.e-control{
+  font-family: 'vazir' !important;
+}
+.e-tbar-btn-text{
+  font-family: 'vazir' !important;
 }

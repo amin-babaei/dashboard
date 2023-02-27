@@ -4,6 +4,7 @@ import Page from "@/components/Page";
 import { TabContext } from '@/context/TabContext';
 import Home from "@/pages/Home";
 import Customers from "@/pages/customers/Customers";
+import Calendar from "@/pages/Calendar";
 
 const PageContainer = () => {
     const Tab = useContext(TabContext)
@@ -14,6 +15,9 @@ const PageContainer = () => {
             </Page>
             <Page pageNumber={Tab?.pageNumber || 0} index={1}>
                 <Customers />
+            </Page>
+            <Page pageNumber={Tab?.pageNumber || 0} index={2}>
+                <Calendar />
             </Page>
         </Container>
     );
