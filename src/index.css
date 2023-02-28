@@ -35,3 +35,8 @@ body{
 .e-tbar-btn-text{
   font-family: 'vazir' !important;
 }
+.sketch-picker{
+  position: absolute;
+  bottom: 0;
+  right: 1px;
+}

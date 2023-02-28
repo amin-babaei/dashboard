@@ -6,6 +6,7 @@ import Home from "@/pages/Home";
 import Customers from "@/pages/customers/Customers";
 import Calendar from "@/pages/Calendar";
 import TextEditor from "@/pages/editor/TextEditor";
+import ColorPicker from "@/pages/ColorPicker";
 
 const PageContainer = () => {
     const Tab = useContext(TabContext)
@@ -22,6 +23,9 @@ const PageContainer = () => {
             </Page>
             <Page pageNumber={Tab?.pageNumber || 0} index={3}>
                 <TextEditor />
+            </Page>
+            <Page pageNumber={Tab?.pageNumber || 0} index={4}>
+                <ColorPicker />
             </Page>
         </Container>
     );
