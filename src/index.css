@@ -26,17 +26,13 @@ body{
   margin: 0;
   padding: 0;
 }
-#recharts_measurement_span + div{
-  display: none;
-}
-.e-control{
-  font-family: 'vazir' !important;
-}
-.e-tbar-btn-text{
-  font-family: 'vazir' !important;
-}
+/* color picker */
 .sketch-picker{
   position: absolute;
   bottom: 0;
   right: 1px;
+}
+/* calendar */
+.rbc-off-range-bg{
+  background-color: unset;
 }
