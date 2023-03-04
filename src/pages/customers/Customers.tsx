@@ -23,12 +23,12 @@ const Customers = () => {
   if(error)return <Typography>{error.message}</Typography>
   return (
     <TableContainer component={Paper} ref={scollToRef}>
-        <Box sx={{ overflow: "auto" }}>
-          <Box sx={{ width: "100%", display: 'table', tableLayout: "fixed" }}>
+        <Box component='div' sx={{ overflow: "auto" }}>
+          <Box component='div' sx={{ width: "100%", display: 'table', tableLayout: "fixed" }}>
             <Table aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell align="center">image</TableCell>
+                  <TableCell align="left">image</TableCell>
                   <TableCell align="center">name</TableCell>
                   <TableCell align="center">gender</TableCell>
                   <TableCell align="center">status</TableCell>
@@ -39,8 +39,9 @@ const Customers = () => {
                 {item?.map(cararcter => (
                   <TableRow
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                    key={cararcter.id}
                   >
-                    <TableCell align="center">
+                    <TableCell align="left">
                       <img src={cararcter.image} alt="" width={100} />
                     </TableCell>
                     <TableCell align="center">
@@ -52,7 +53,7 @@ const Customers = () => {
                   </TableRow>
                 ))}
               </TableBody>
-              <Pagination count={info?.pages} page={page} onChange={handleChange} />
+              <Pagination sx={{width:'500px'}} count={info?.pages} page={page} onChange={handleChange} />
             </Table>
           </Box>
         </Box>
