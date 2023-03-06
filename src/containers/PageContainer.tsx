@@ -8,6 +8,7 @@ import CalendarPage from "@/pages/calendar/CalendarPage";
 import TextEditor from "@/pages/editor/TextEditor";
 import ColorPicker from "@/pages/ColorPicker";
 import Kanban from "@/pages/Kanban";
+import DropAudio from "@/pages/Audio";
 
 const PageContainer = () => {
     const Tab = useContext(TabContext)
@@ -30,6 +31,9 @@ const PageContainer = () => {
             </Page>
             <Page pageNumber={Tab?.pageNumber || 0} index={5}>
                 <Kanban />
+            </Page>
+            <Page pageNumber={Tab?.pageNumber || 0} index={6}>
+                <DropAudio />
             </Page>
         </Container>
     );
