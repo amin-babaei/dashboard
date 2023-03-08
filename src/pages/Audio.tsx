@@ -8,7 +8,6 @@ const DropAudio = () => {
   const [fileLoaded, setFileLoaded] = useState<boolean>(false);
   const [fileName, setFileName] = useState<string>("");
   const [fileURL, setFileURL] = useState<string>("");
-  const [status, setStatus] = useState<string>("");
 
   const [fileMetaData, setFileMetaData] = useState({});
 
@@ -26,13 +25,12 @@ const DropAudio = () => {
         setFileLoaded(true);
         setFileName(fileName);
         setFileURL(objectURL);
-        setStatus('');
         (async () => {
           try {
             const metaData = await mm.fetchFromUrl(objectURL);
             setFileMetaData([metaData]);
-          } catch (error) {
-            setStatus('این فایل پشتیبانی نیمشه')
+          } catch {
+            throw new Error('فایل شناسایی نشد');
           }
         })();
       };
@@ -42,18 +40,19 @@ const DropAudio = () => {
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: "audio/*"
+    accept: {
+      'audio/mp3': ['.mp3', '.MP3'],
+    }
   });
 
   return fileLoaded && fileURL && fileMetaData[0] ? (
     <>
-      <Player audioUrl={fileURL} status={status} />
+      <Player audioUrl={fileURL}/>
       <Paper sx={{ padding: 3 }} {...getRootProps()}>
         <input {...getInputProps()} />
         <span>
           Filename: <span className="DropzoneFileName">{fileName}</span>
         </span>
-        <Typography component='h4' mt={1}>{status}</Typography>
         {""}
         <p>یک فایل صوتی را اینجا رها کنید یا برای آپلود کلیک کنید</p>
       </Paper>
@@ -62,7 +61,6 @@ const DropAudio = () => {
     <Paper sx={{ padding: 3 }} {...getRootProps()}>
       <input {...getInputProps()} />
       <Typography component='h4'>یک فایل صوتی را اینجا رها کنید یا برای آپلود کلیک کنید</Typography>
-      <Typography component='h4' mt={1}>{status}</Typography>
     </Paper>
   );
 }
