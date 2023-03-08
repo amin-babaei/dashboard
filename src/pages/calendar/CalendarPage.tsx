@@ -5,7 +5,7 @@ import format from 'date-fns-jalali/format'
 import parse from 'date-fns-jalali/parse'
 import startOfWeek from 'date-fns-jalali/startOfWeek'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
-import { Box,Table, useMediaQuery } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 import { RBCToolbar } from './RBCToolbar'
 
 const locales = {
@@ -22,20 +22,32 @@ const localizer = dateFnsLocalizer({
 const CalendarPage = () => {
   const matches = useMediaQuery('(max-width:500px)');
   return (
-    <Box overflow='auto'>
-      <Box sx={{ width: "100%", display: 'table', tableLayout: "fixed" }}>
-        <Table>
-          <Calendar
+    <Box component='section' overflow='auto'>
+      <Box component='div' sx={{ width: "100%", display: 'table', tableLayout: "fixed" }}>
+        <Calendar
           localizer={localizer}
           startAccessor="start"
           endAccessor="end"
-          style={{height:'500px',width : matches ? '550px' : '100%'}}
+          style={{ height: '500px', width: matches ? '550px' : '100%' }}
           rtl
           components={{
             toolbar: RBCToolbar
           }}
-          />
-          </Table>
+          eventPropGetter={
+            () => {
+              let newStyle = {
+                backgroundColor: "lightgrey",
+                color: 'black',
+                borderRadius: "0px",
+                border: "none"
+              }
+        
+              return {
+                style: newStyle
+              };
+            }
+          }
+        />
       </Box>
     </Box>
   );

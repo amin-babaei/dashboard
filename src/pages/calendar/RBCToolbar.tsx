@@ -32,8 +32,8 @@ export const RBCToolbar = (props: any) => {
   };
 
   return (
-    <Box display='flex' justifyContent='space-between' alignItems='center'>
-      <Box display='flex' alignItems="center">
+    <Box component='div' display='flex' justifyContent='space-between' alignItems='center'>
+      <Box component='div' display='flex' alignItems="center">
         <IconButton sx={{ mr: '20px', mb: 1 }} id="prev-btn-icon" onClick={goToBack}>
           <ChevronRightIcon />
         </IconButton>
