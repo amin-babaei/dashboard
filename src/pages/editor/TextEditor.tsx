@@ -3,6 +3,7 @@ import { EditorState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
 import editorLabels from './config.json';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { Paper } from "@mui/material";
 
 interface State {
     editorState: EditorState;
@@ -16,7 +17,7 @@ const TextEditor = () => {
     };
 
     return (
-        <div className="editor">
+        <Paper>
             <Editor
                 placeholder="اینجا تایپ کن"
                 localization={{ locale: 'en', translations: editorLabels }}
@@ -30,7 +31,7 @@ const TextEditor = () => {
                     textAlign: { inDropdown: true },
                 }}
             />
-        </div>
+        </Paper>
     )
 }
 

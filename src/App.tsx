@@ -16,14 +16,14 @@ const App = () => {
   return (
     <CacheProvider value={clientSideEmotionCache}>
       <ThemeProvider theme={theme}>
-          <Box sx={{ display: 'flex'}}>
+          <Box component="main" sx={{ display: 'flex'}}>
             <CssBaseline />
               <Navbar/>
               <SidebarContainer>
                 <SidebarContent/>
               </SidebarContainer>
             <Box
-              component="main"
+              component="div"
               sx={{
                 flexGrow: 1,
                 minHeight: '100vh',

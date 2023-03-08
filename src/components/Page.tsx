@@ -12,7 +12,7 @@ const Page = (props:IProps) => {
     return (
         <div>
             {pageNumber === index && (
-                <Box sx={{height:'80vh',overflow:'auto'}}>
+                <Box component='section' sx={{height:'80vh',overflow:'auto'}}>
                     {children}
                 </Box>
             )}

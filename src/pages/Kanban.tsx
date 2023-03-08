@@ -1,4 +1,5 @@
 import TaskBox from '@/components/kanban/TaskBox';
+import { Box } from '@mui/material';
 import { useMemo, useState, useCallback, useEffect } from 'react';
 
 function Kanban() {
@@ -17,7 +18,7 @@ function Kanban() {
       : initEvent;
   });
 
-  const [currentEvent, setCurrentEvent] = useState(events[0]);
+  const [currentEvent] = useState(events[0]);
 
   const updateEvents = useCallback(async () => {
     try {
@@ -37,14 +38,14 @@ function Kanban() {
   }, [events]);
 
   return (
-    <div className='App'>
+    <Box component="div">
       <TaskBox
         events={events}
         setEvents={setEvents}
         currentEvent={currentEvent} 
         tag={''}
         />
-    </div>
+    </Box>
   );
 }
 
