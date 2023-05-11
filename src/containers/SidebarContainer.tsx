@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import { DrawerContext } from '@/context/DrawerContext';
 
 interface IProps{
-  children: JSX.Element
+  children: React.ReactNode
 }
 
 const drawerWidth: number = 210;

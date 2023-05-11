@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import Speeddial from "./Speeddial";
 
 interface IProps{
-    children: JSX.Element
+    children: React.ReactNode
     pageNumber: number
     index: number
 }

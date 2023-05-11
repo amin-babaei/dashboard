@@ -2,14 +2,20 @@ import { useState } from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import uuid from 'react-uuid';
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, Grid, Paper, TextField, Typography, useMediaQuery, useTheme } from '@mui/material';
-import Task from './Task';
 import AddIcon from '@mui/icons-material/Add';
 import { IColumn } from './type';
-
-const Column = ({ tag, currentEvent, events, setEvents }:IColumn) => {
-  const [open, setOpen] = useState(false);
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
+import DeleteIcon from '@mui/icons-material/Delete';
+type Event = {
+  title:string
+  "تمام شده":[]
+  "در حال انجام":[]
+  "لیست کار ها":[]
+}
+const Column = ({ tag, currentEvent, events, setEvents }:any) => {
+  console.log(events);
+  const [open, setOpen] = useState<boolean>(false);
+  const [title, setTitle] = useState<string>('')
+  const [description, setDescription] = useState<string>('')
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -23,33 +29,34 @@ const Column = ({ tag, currentEvent, events, setEvents }:IColumn) => {
     if (title.length === 0 || description.length === 0) {
       return
     }
-    setEvents((prev) => {
+    setEvents((prev: { title: string; }[]) => {
       const arrCopy = [...prev];
-      const index = prev.findIndex(
-        (event: { title: string; }) => event.title === currentEvent.title
-      );
-      const eventCopy = arrCopy[index];
-      arrCopy.splice(index, 1, {
-        ...eventCopy,
-        [tag]: [
-          ...eventCopy[tag],
-          { name: title, id: uuid(), details: description },
-        ],
-      });
-      setTitle('')
-      setDescription('')
-      setOpen(false)
-      return arrCopy;
+      if(prev){
+        const index = prev.findIndex(
+          (event: { title: string; }) => event.title === currentEvent.title
+        );
+        const eventCopy = arrCopy[index];
+        arrCopy.splice(index, 1, {
+          ...eventCopy,
+          [tag]: [
+            { name: title, id: uuid(), details: description },
+          ],
+        });
+        setTitle('')
+        setDescription('')
+        setOpen(false)
+        return arrCopy;
+      }
     });
   };
 
   const handleRemove = (id:string, e:React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
-    setEvents((prev) =>
-      prev.map((event: { title: string; }) => {
+    setEvents((prev: { title: string; }[]) =>
+      prev.map((event: any) => {
         if (event.title === currentEvent.title) {
           const taskList = event[tag];
-          const index = taskList.findIndex((item: { id: string; }) => item.id === id);
+          const index = event[tag].findIndex((item: { id: string; }) => item.id === id);
           taskList.splice(index, 1);
           return { ...event, [tag]: [...taskList] };
         } else {
@@ -112,22 +119,27 @@ const Column = ({ tag, currentEvent, events, setEvents }:IColumn) => {
                 {...provided.droppableProps}
               >
                 {events
-                  .find((event) => event.title === currentEvent.title)
-                  ?.[tag].map((item, index) => (
+                  .find((event: any) => event.title === currentEvent.title)
+                  ?.[tag].map((item:{name:string,details:string,id:string}, index:number) => (
                     <Draggable
                       key={item.id}
                       draggableId={item.id}
                       index={index}
                     >
-                      {(provided, snapshot) => (
-                        <Task
-                          name={item.name}
-                          details={item.details}
-                          id={item.id}
-                          provided={provided}
-                          snapshot={snapshot}
-                          handleRemove={handleRemove}
-                        />
+                      {(provided) => (
+                       <Box component="article"
+                       mt={2}
+                       border='1px solid #f1f1f1'
+                       ref={provided.innerRef}
+                       {...provided.draggableProps}
+                       {...provided.dragHandleProps}
+                     >
+                       <Typography component='h4' fontWeight='bold' py={2}>{item.name}</Typography>
+                       <Typography component='p' fontSize='13px' color='gray'>{item.details}</Typography>
+                       <Button size="small" color='warning' variant='contained' sx={{mt:2,mb:1}} onClick={(e) => handleRemove(item.id, e)}>
+                         <DeleteIcon fontSize="small"/>
+                       </Button>
+                     </Box>
                       )}
                     </Draggable>
                   ))}

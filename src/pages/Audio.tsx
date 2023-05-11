@@ -4,17 +4,21 @@ import * as mm from "music-metadata-browser";
 import { Player } from "@/components/audio/Player";
 import { Paper, Typography } from "@mui/material";
 
+type IFileMetaData = {
+    album:string
+    artist:string
+    title:string
+    year : number
+};
+
 const DropAudio = () => {
   const [fileLoaded, setFileLoaded] = useState<boolean>(false);
-  const [fileName, setFileName] = useState<string>("");
   const [fileURL, setFileURL] = useState<string>("");
-
-  const [fileMetaData, setFileMetaData] = useState({});
+  const [fileMetaData, setFileMetaData] = useState<IFileMetaData|null>(null);
 
   const onDrop = useCallback((acceptedFiles: Blob[]) => {
     acceptedFiles.forEach((file: Blob) => {
       const reader = new FileReader();
-      const fileName = file.name;
 
       reader.onabort = () => console.log("file reading was aborted");
       reader.onerror = () => console.log("file reading has failed");
@@ -23,14 +27,13 @@ const DropAudio = () => {
         const objectURL = URL.createObjectURL(file);
 
         setFileLoaded(true);
-        setFileName(fileName);
         setFileURL(objectURL);
         (async () => {
           try {
-            const metaData = await mm.fetchFromUrl(objectURL);
-            setFileMetaData([metaData]);
-          } catch {
-            throw new Error('فایل شناسایی نشد');
+            const {common} = await mm.fetchFromUrl(objectURL);
+            setFileMetaData(common as IFileMetaData);
+          } catch(err) {
+            console.log(err);
           }
         })();
       };
@@ -45,13 +48,13 @@ const DropAudio = () => {
     }
   });
 
-  return fileLoaded && fileURL && fileMetaData[0] ? (
+  return fileLoaded && fileURL && fileMetaData ? (
     <>
       <Player audioUrl={fileURL}/>
       <Paper sx={{ padding: 3 }} {...getRootProps()}>
         <input {...getInputProps()} />
         <span>
-          Filename: <span className="DropzoneFileName">{fileName}</span>
+          artist: <span className="DropzoneFileName">{fileMetaData.artist}</span>
         </span>
         {""}
         <p>یک فایل صوتی را اینجا رها کنید یا برای آپلود کلیک کنید</p>

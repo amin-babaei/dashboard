@@ -5,7 +5,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 const Loading = () => {
 
   return (
-    <Box minHeight='80vh' zIndex='10'>
+    <Box component='div' minHeight='80vh' zIndex='10'>
       <Backdrop
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open

@@ -8,32 +8,41 @@ interface IDropResult{
   source:DropResult['source']
   destination:DropResult['destination']
 }
+type CureEvent = {
+  title:string
+  "تمام شده" : []
+  "در حال انجام" : []
+  "لیست کار ها" : []
+}
 const TaskBox = ({ events, setEvents, currentEvent }:IColumn) => {
- 
+
   const handleDragEnd = useCallback((result:IDropResult) => {
     if (!result.destination) return;
     const { source, destination } = result;
     const curEvent = events.find((item: { title: string }) => item.title === currentEvent.title);
-    const taskCopy = curEvent[source.droppableId][source.index];
-    setEvents((prev) =>
-    prev.map((event: { [x: string]: any; title: string; }) => {
-        if (event.title === currentEvent.title) {
-          let eventCopy = { ...event };
-
-          const taskListSource = event[source.droppableId];
-          taskListSource.splice(source.index, 1);
-          eventCopy = { ...event, [source.droppableId]: taskListSource };
- 
-          const taskListDes = event[destination.droppableId];
-          taskListDes.splice(destination.index, 0, taskCopy);
-          eventCopy = { ...event, [destination.droppableId]: taskListDes };
-          return eventCopy;
-        } else {
-          return event;
-        }
-      })
-    );
+    if(curEvent){
+      const taskCopy= curEvent[source.droppableId][source.index];
+      setEvents((prev:any) =>
+      prev.map((event: { [x: string]: any; title: string; }) => {
+          if (event.title === currentEvent.title) {
+            let eventCopy = { ...event };
+  
+            const taskListSource = event[source.droppableId];
+            taskListSource.splice(source.index, 1);
+            eventCopy = { ...event, [source.droppableId]: taskListSource };
+   
+            const taskListDes = event[destination.droppableId];
+            taskListDes.splice(destination.index, 0, taskCopy);
+            eventCopy = { ...event, [destination.droppableId]: taskListDes };
+            return eventCopy;
+          } else {
+            return event;
+          }
+        })
+      );
+    }
   }, [events, setEvents, currentEvent]);
+
 
   return (
       <DragDropContext onDragEnd={(result) => handleDragEnd(result)}>

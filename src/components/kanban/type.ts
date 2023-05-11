@@ -1,8 +1,7 @@
-import { Dispatch } from "react"
 
 export interface IColumn {
     events:[],
-    setEvents: Dispatch<React.SetStateAction<void>>
+    setEvents: React.Dispatch<React.SetStateAction<object>>
     currentEvent:{
       title:string
     }

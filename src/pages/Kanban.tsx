@@ -23,10 +23,10 @@ function Kanban() {
   const updateEvents = useCallback(async () => {
     try {
       if (!events.length) {
-        await localStorage.setItem('events', JSON.stringify(initEvent));
+        localStorage.setItem('events', JSON.stringify(initEvent));
         setEvents(JSON.parse(localStorage.getItem('events')||''));
       } else {
-        await localStorage.setItem('events', JSON.stringify(events));
+        localStorage.setItem('events', JSON.stringify(events));
       }
     } catch (e) {
       console.error('Failed to modify events!');
