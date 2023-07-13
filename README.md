@@ -1,16 +1,26 @@
-# داشبورد ادمین
+<h1>Admin Dashboard</h1>
+<br/>
+<h2 align="center">🖥️ Tech Stack</h2>
 
-هدف از این پروژه ، استفاده از کامپوننت ها و پکیج های آماده است که در قالب داشبورد ادمین استفاده شده است
+<p align="center">
+  <img alt="react" src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" />
+  <img alt="TypeScript" src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" />
+  <img alt="material-ui" src="https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white"/>
+</p>
 
-در این پروژه از react ts و material ui استفاده شده است
+<br/>
 
-برای حالت dark/light mode از کانفیگ دیفالت material استفاده شده و کاستومایز نشده است
+This project aims to leverage pre-built components and packages to create an admin dashboard.
 
-از rick and morty graphql api در بخش ( مشتریان ) استفاده شده است
+This project utilizes React with TypeScript and Material UI. The default Material UI configuration was used for the dark/light mode and was not customized. The Rick and Morty GraphQL API was used in the "Customers" page.
 
-## Packages
+<br/>
+
+## 📦 Packages
 
 react-audio-spectrum - react-beautiful-dnd - react-draft-wysiwyg - three - react-dropzone - recharts - react-big-calendar - graphql - date-fns-jalali - react-color
+
+<br/>
 
 ## Preview
 
@@ -20,5 +30,18 @@ Link Website : https://amin-babaei-dashboard.netlify.app
 
 ## Contact ME
 
-- Email : [aminbabaei_dev@yahoo.com](mailto:aminbabaei_dev@yahoo.com)
-- Linkedin : https://www.linkedin.com/in/amin-babaei
+<a href="mailto:aminbabaei_dev@yahoo.com">
+    <img alt="yahoo" src="https://img.shields.io/badge/Yahoo!-6001D2?style=for-the-badge&logo=Yahoo!&logoColor=white)" />
+</a>
+<a href="https://www.linkedin.com/in/amin-babaei">
+    <img alt="Telegram" src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white" />
+</a>
+<a href="https://discordapp.com/users/294545480799485952">
+    <img alt="discord" src="https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white" />
+</a>
+<a href="https://wa.me/989935679611">
+    <img src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/>
+</a>
+<a href="https://telegram.me/am_front">
+    <img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/>
+</a>
