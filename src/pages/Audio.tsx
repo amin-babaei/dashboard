@@ -15,17 +15,18 @@ const DropAudio = () => {
   const [fileLoaded, setFileLoaded] = useState<boolean>(false);
   const [fileURL, setFileURL] = useState<string>("");
   const [fileMetaData, setFileMetaData] = useState<IFileMetaData|null>(null);
+  const [fileName, setFileName] = useState<string>("");
 
   const onDrop = useCallback((acceptedFiles: Blob[]) => {
     acceptedFiles.forEach((file: Blob) => {
       const reader = new FileReader();
-
+      const fileName = file.name;
       reader.onabort = () => console.log("file reading was aborted");
       reader.onerror = () => console.log("file reading has failed");
       reader.onload = () => {
 
         const objectURL = URL.createObjectURL(file);
-
+        setFileName(fileName);
         setFileLoaded(true);
         setFileURL(objectURL);
         (async () => {
@@ -54,7 +55,7 @@ const DropAudio = () => {
       <Paper sx={{ padding: 3 }} {...getRootProps()}>
         <input {...getInputProps()} />
         <span>
-          artist: <span className="DropzoneFileName">{fileMetaData.artist}</span>
+          File Name : <span className="DropzoneFileName">{fileName}</span>
         </span>
         {""}
         <p>یک فایل صوتی را اینجا رها کنید یا برای آپلود کلیک کنید</p>
