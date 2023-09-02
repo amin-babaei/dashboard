@@ -1,15 +1,13 @@
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
 import faIR from 'date-fns-jalali/locale/fa-IR'
-import getDay from 'date-fns-jalali/getDay'
-import format from 'date-fns-jalali/format'
-import parse from 'date-fns-jalali/parse'
-import startOfWeek from 'date-fns-jalali/startOfWeek'
+import { getDay, format, parse, startOfWeek, isToday} from 'date-fns-jalali'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import { Box, useMediaQuery } from "@mui/material"
 import { RBCToolbar } from './RBCToolbar'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Event } from 'react-big-calendar'
 import DialogEvent from './DialogEvent'
+import { ThemeContext } from '@/context/ThemeContext'
 
 const locales = {
   'fa-IR': faIR
@@ -29,6 +27,8 @@ const CalendarPage = () => {
   const [selectedStart, setSelectedStart] = useState<Date | null>(null);
   const [selectedEnd, setSelectedEnd] = useState<Date | null>(null);
   const [eventTitle, setEventTitle] = useState<string>('');
+
+  const theme = useContext(ThemeContext)
 
   const handleSelect = ({ start, end }: { start: Date, end: Date }) => {
     setSelectedStart(start);
@@ -111,6 +111,12 @@ const CalendarPage = () => {
             }
           }}
           onSelectSlot={handleSelect}
+          dayPropGetter={( date:Date ) => {
+            const style = isToday(date) ? { backgroundColor: theme?.mode === 'dark' ? '#4a4a4a' : undefined } : {};
+            return {
+              style
+            };
+          }}
         />
       </Box>
       <DialogEvent 
