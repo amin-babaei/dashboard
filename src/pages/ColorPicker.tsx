@@ -4,7 +4,7 @@ import { SketchPicker } from 'react-color';
 import { useGLTF, PerspectiveCamera, OrbitControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
-
+import { styled } from '@mui/material/styles';
 interface ColorResult {
   hex: string;
 }
@@ -17,6 +17,18 @@ type GLTFResult = GLTF & {
     ['blinn3-fx']: THREE.MeshStandardMaterial
   }
 }
+
+const PaperCustom = styled(Paper)(
+  ({ theme }) => ({
+        width: '100%', 
+        height: "75vh",
+        position:'relative',
+        margin:'auto',
+        [theme.breakpoints.down('lg')]: {
+          width: '70vw',
+        },
+    }
+  ))
 
 export function Model(props: customColor) {
   const { nodes, materials } = useGLTF('/Duck.gltf') as GLTFResult
@@ -37,7 +49,7 @@ const ColorPicker = () => {
   }
 
   return (
-    <Paper sx={{ width: "70vw", height: "75vh",position:'relative',margin:'auto'}}>
+    <PaperCustom>
       <Canvas flat linear>
         <Suspense fallback={null}>
           <ambientLight />
@@ -51,7 +63,7 @@ const ColorPicker = () => {
         </Suspense>
       </Canvas>
       <SketchPicker color={background} onChangeComplete={changeColor}/>
-    </Paper> 
+    </PaperCustom> 
   )
 }
 
