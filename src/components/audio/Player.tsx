@@ -10,7 +10,7 @@ export function Player({ audioUrl }: { audioUrl: string }) {
   const [isPaused, setIsPaused] = useState(false);
   const [isStopped, setIsStopped] = useState(true);
   const [currentTime, setCurrentTime] = useState<number>(0);
-  const [volume, setVolume] = useState<number>(20);
+  const [volume, setVolume] = useState<number>(50);
 
   const handleSliderChange = (event: any, newValue: number | number[]) => {
     if (typeof newValue === 'number') {
